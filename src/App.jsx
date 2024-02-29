@@ -1,17 +1,25 @@
 import "./App.css";
 import { useState } from "react";
+import { Sheet } from "./components/Sheet/Sheet";
 
 export default App;
 
 function App() {
-  const [isClicked, setIsClicked] = useState(false);
+  const [variant, setVariant] = useState("front");
+
   const flipPage = () => {
-    return setIsClicked(true);
+    return setVariant(variant === "front" ? "back" : "front");
   };
+
   return (
-    <div onClick={flipPage} className={`book ${isClicked ? "flip" : ""}`}>
-      <div className={`page1 ${isClicked ? "flip-front" : ""}`}>Page1</div>
-      <div className={`page2 ${isClicked ? "flip-back" : ""}`}>Page 2</div>
+    <div
+      style={{
+        width: "500px",
+        margin: "auto",
+      }}
+    >
+      <button onClick={flipPage}>toggle</button>
+      <Sheet side={variant} />
     </div>
   );
 }
